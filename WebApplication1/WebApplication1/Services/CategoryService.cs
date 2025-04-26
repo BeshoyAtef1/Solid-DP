@@ -1,26 +1,30 @@
-﻿using System.Linq.Expressions;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using System.Linq.Expressions;
 using WebApplication1.Data.Repositories;
 using WebApplication1.Models;
+using WebApplication1.ViewModels.Categories;
 
 namespace WebApplication1.Services
 {
     public class CategoryService
     {
         IGeneralRepository<Category> _repository;
-
         public CategoryService()
         {
             _repository = new GeneralRepository<Category>();
         }
 
-        public void Add(Category category)
+        public void Add(CategoryCreateViewModel viewModel)
         {
+            var category = new Category { Name = viewModel.Name };
             _repository.Add(category);
         }
 
-        public void Update(Category category)
+        public void Update(CategoryEditViewModel viewModel)
         {
-
+            var category = viewModel.Map<Category>();
+            _repository.Update(category);
         }
 
         public void Remove(int id)
@@ -28,20 +32,45 @@ namespace WebApplication1.Services
 
         }
 
-        public Category GetByName(string name)
+        public CategoryEditViewModel GetEditable(int id)
         {
-            return _repository.Get(x => x.Name.Contains(name))
+            return _repository.Get(x => x.ID == id)
+                .ProjectTo<CategoryEditViewModel>()
                 .FirstOrDefault();
         }
 
-        public IEnumerable<Category> GetAll()
+        public CategoryViewModel GetByName(string name)
         {
-            return _repository.GetAll();
+            return _repository.Get(x => x.Name.Contains(name))
+                .Select(c => new CategoryViewModel
+                { 
+                    ID = c.ID,
+                    Name = c.Name
+                }).FirstOrDefault();
         }
 
-        public Category GetByID(int id)
+        public IEnumerable<CategoryViewModel> GetAll()
         {
-            return _repository.GetByID(id);
+            //return _repository.GetAll()
+            //    .Select(c => new CategoryViewModel
+            //    {
+            //        ID = c.ID,
+            //        Name = c.Name,
+            //    });
+
+            return _repository.GetAll()
+                .ProjectTo<CategoryViewModel>()
+                .ToList();
+        }
+
+        public CategoryViewModel GetByID(int id)
+        {
+            return _repository.Get(c => c.ID == id)
+                .Select(c => new CategoryViewModel
+                {
+                    ID = c.ID,
+                    Name = c.Name
+                }).FirstOrDefault();
         }
     }
 }

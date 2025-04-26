@@ -1,4 +1,7 @@
 
+using AutoMapper;
+using WebApplication1.Services;
+
 namespace WebApplication1
 {
     public class Program
@@ -14,8 +17,13 @@ namespace WebApplication1
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddScoped<CategoryService>();
+            builder.Services.AddScoped<ProductService>();
+            builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
             var app = builder.Build();
-            
+
+            MapperService.Mapper = app.Services.GetService<IMapper>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
