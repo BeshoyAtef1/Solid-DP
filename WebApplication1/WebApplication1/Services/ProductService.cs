@@ -39,5 +39,22 @@ namespace WebApplication1.Services
                 .ToList();
         }
 
+        public void Remove(int id)
+        {
+            _repository.Remove(id);
+        }
+
+        public async Task RemoveByCategoryID(int categoryID)
+        {
+            var products = _repository.Get(p => p.CategoryID == categoryID);
+
+            foreach (var product in products)
+            {
+                Remove(product.ID);
+            }
+
+            await _repository.SaveChangesAsync();
+        }
+
     }
 }

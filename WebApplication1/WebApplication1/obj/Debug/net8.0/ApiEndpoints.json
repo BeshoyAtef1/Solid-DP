@@ -57,7 +57,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "WebApplication1.ViewModels.Categories.CategoryViewModel",
+        "Type": "WebApplication1.ViewModels.ResponseViewModel\u00601[[WebApplication1.ViewModels.Categories.CategoryViewModel, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

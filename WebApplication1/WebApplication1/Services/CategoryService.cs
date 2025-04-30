@@ -10,15 +10,21 @@ namespace WebApplication1.Services
     public class CategoryService
     {
         IGeneralRepository<Category> _repository;
-        public CategoryService()
+        // IGeneralRepository<Product> _productRepository;
+        //ProductService _productService;
+        public CategoryService()//ProductService productService)
         {
             _repository = new GeneralRepository<Category>();
+           // _productService = productService;
+           // _productRepository = new GeneralRepository<Product>();
         }
 
-        public void Add(CategoryCreateViewModel viewModel)
+        public async Task Add(CategoryCreateViewModel viewModel)
         {
             var category = new Category { Name = viewModel.Name };
             _repository.Add(category);
+
+            await _repository.SaveChangesAsync();
         }
 
         public void Update(CategoryEditViewModel viewModel)
@@ -27,9 +33,21 @@ namespace WebApplication1.Services
             _repository.Update(category);
         }
 
-        public void Remove(int id)
+        public async Task Remove(int id)
         {
+            _repository.Remove(id);
 
+            await _repository.SaveChangesAsync();
+
+          //  _productService.RemoveByCategoryID(id);
+
+            //var products = _productRepository.Get(p => p.CategoryID == id);
+
+            //foreach (var product in products)
+            //{
+            //    _productRepository.Remove(product.ID);
+            //}
+            
         }
 
         public CategoryEditViewModel GetEditable(int id)

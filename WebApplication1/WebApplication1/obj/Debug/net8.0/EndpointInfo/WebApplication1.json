@@ -64,17 +64,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CategoryViewModel"
+                  "$ref": "#/components/schemas/CategoryViewModelResponseViewModel"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CategoryViewModel"
+                  "$ref": "#/components/schemas/CategoryViewModelResponseViewModel"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CategoryViewModel"
+                  "$ref": "#/components/schemas/CategoryViewModelResponseViewModel"
                 }
               }
             }
@@ -259,6 +259,25 @@
         },
         "additionalProperties": false
       },
+      "CategoryViewModelResponseViewModel": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CategoryViewModel"
+          },
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorCode": {
+            "$ref": "#/components/schemas/ErrorCode"
+          }
+        },
+        "additionalProperties": false
+      },
       "CustomerViewModel": {
         "type": "object",
         "properties": {
@@ -337,6 +356,16 @@
           4,
           5,
           6
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ErrorCode": {
+        "enum": [
+          0,
+          1,
+          100,
+          101
         ],
         "type": "integer",
         "format": "int32"

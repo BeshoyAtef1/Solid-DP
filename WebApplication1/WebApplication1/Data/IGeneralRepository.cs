@@ -11,5 +11,7 @@ namespace WebApplication1.Data.Repositories
         T GetByID(int id);
         IQueryable<T> GetAll();
         IQueryable<T> Get(Expression<Func<T, bool>> expression);
+
+        Task SaveChangesAsync();
     }
 }

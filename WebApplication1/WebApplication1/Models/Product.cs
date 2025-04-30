@@ -9,6 +9,8 @@ namespace WebApplication1.Models
         public double UnitPrice { get; set; }
         public double MaxDiscount { get; set; }
 
+        public int CategoryID { get; set; }
+
         public Category Category { get; set; }
     }
 }

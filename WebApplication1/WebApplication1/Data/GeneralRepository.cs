@@ -41,5 +41,10 @@ namespace WebApplication1.Data.Repositories
         {
             return Get(x => x.ID == id).FirstOrDefault();
         }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }
