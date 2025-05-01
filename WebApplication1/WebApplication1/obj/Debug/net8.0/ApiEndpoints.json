@@ -68,6 +68,28 @@
     ]
   },
   {
+    "ContainingType": "WebApplication1.Controllers.CategoryController",
+    "Method": "Remove",
+    "RelativePath": "Category/Remove",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categorID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "WebApplication1.Controllers.CustomerController",
     "Method": "GetAll",
     "RelativePath": "Customer/GetAll",

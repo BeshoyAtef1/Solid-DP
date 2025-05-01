@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using WebApplication1.Data;
 using WebApplication1.Data.Repositories;
 using WebApplication1.Models;
@@ -13,17 +14,29 @@ namespace WebApplication1.Controllers
     [Route("[controller]/[action]")]
     public class CustomerController : ControllerBase
     {
-        public CustomerController()
+        IMemoryCache _memoryCache;
+        public CustomerController(IMemoryCache memoryCache)
         {
+            _memoryCache = memoryCache;
         }
 
         [HttpGet]
         public IEnumerable<CustomerViewModel> GetAll()
         {
             CustomerFakeDataService fakeDataService = new CustomerFakeDataService();
+            IEnumerable<CustomerViewModel> customers;
 
-            return fakeDataService.Generate();
+            _memoryCache.TryGetValue("customers", out customers);
 
+            if (customers is null)
+            {
+                customers = fakeDataService.Generate();
+                _memoryCache.Set("customers", customers, TimeSpan.FromHours(1));
+            }
+
+            var item = _memoryCache.GetOrCreate("test", entry => "hello");
+
+            return customers;
         }
     }
 }

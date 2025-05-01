@@ -22,11 +22,11 @@ namespace WebApplication1.Services
 
         public IEnumerable<CustomerViewModel> Generate()
         {
-            //return _faker.Generate(50);
+            return _faker.Generate(50);
 
             //return _faker.GenerateForever();
 
-            return _faker.GenerateLazy(50);
+           // return _faker.GenerateLazy(50);
         }
     }
 }

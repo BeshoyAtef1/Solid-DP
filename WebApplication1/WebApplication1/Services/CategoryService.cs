@@ -19,13 +19,13 @@ namespace WebApplication1.Services
            // _productRepository = new GeneralRepository<Product>();
         }
 
-        public async Task Add(CategoryCreateViewModel viewModel)
-        {
-            var category = new Category { Name = viewModel.Name };
-            _repository.Add(category);
+        //public async Task Add(CategoryCreateViewModel viewModel)
+        //{
+        //    var category = new Category { Name = viewModel.Name };
+        //    _repository.Add(category);
 
-            await _repository.SaveChangesAsync();
-        }
+        //    await _repository.SaveChangesAsync();
+        //}
 
         public void Update(CategoryEditViewModel viewModel)
         {
@@ -57,15 +57,15 @@ namespace WebApplication1.Services
                 .FirstOrDefault();
         }
 
-        public CategoryViewModel GetByName(string name)
-        {
-            return _repository.Get(x => x.Name.Contains(name))
-                .Select(c => new CategoryViewModel
-                { 
-                    ID = c.ID,
-                    Name = c.Name
-                }).FirstOrDefault();
-        }
+        //public CategoryViewModel GetByName(string name)
+        //{
+        //    return _repository.Get(x => x.Name.Contains(name))
+        //        .Select(c => new CategoryViewModel
+        //        { 
+        //            ID = c.ID,
+        //            Name = c.Name
+        //        }).FirstOrDefault();
+        //}
 
         public IEnumerable<CategoryViewModel> GetAll()
         {

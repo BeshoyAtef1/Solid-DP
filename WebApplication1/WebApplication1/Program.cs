@@ -1,7 +1,9 @@
 
 using AutoMapper;
+using MediatR;
 using Serilog;
 using Serilog.Sinks.MSSqlServer;
+using WebApplication1.Data;
 using WebApplication1.Middlewares;
 using WebApplication1.Services;
 
@@ -24,6 +26,7 @@ namespace WebApplication1
             builder.Services.AddScoped<ProductService>();
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
             builder.Services.AddScoped<GlobalErrorHandlerMiddleware>();
+            builder.Services.AddScoped<Context>();
             builder.Services.AddScoped<TransactionMiddleware>();
 
             //builder.Logging.AddConsole();
@@ -42,11 +45,21 @@ namespace WebApplication1
 
             builder.Host.UseSerilog();
 
+            builder.Services.AddMemoryCache();
+
+            builder.Services.AddStackExchangeRedisCache(opts =>
+            {
+                opts.Configuration = "redis-17821.c281.us-east-1-2.ec2.redns.redis-cloud.com:17821,User=default,Password=opG4Zy9xf6AA2UhLMzI93QPDmBAkwNgN";
+                opts.InstanceName = "RedisDB";
+            });
+            
+            builder.Services.AddMediatR(opts =>
+                opts.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
             var app = builder.Build();
 
             app.UseMiddleware<GlobalErrorHandlerMiddleware>();
-            app.UseMiddleware<TransactionMiddleware>();
+           // app.UseMiddleware<TransactionMiddleware>();
 
             MapperService.Mapper = app.Services.GetService<IMapper>();
 

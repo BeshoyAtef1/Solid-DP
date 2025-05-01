@@ -113,6 +113,29 @@
         }
       }
     },
+    "/Category/Remove": {
+      "delete": {
+        "tags": [
+          "Category"
+        ],
+        "parameters": [
+          {
+            "name": "categorID",
+            "in": "query",
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/Customer/GetAll": {
       "get": {
         "tags": [
@@ -364,6 +387,7 @@
         "enum": [
           0,
           1,
+          2,
           100,
           101
         ],

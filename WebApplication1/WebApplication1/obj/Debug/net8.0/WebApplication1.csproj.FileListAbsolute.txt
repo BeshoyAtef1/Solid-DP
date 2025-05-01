@@ -103,3 +103,7 @@ D:\Work\ITI\Intake 45\AdvancedTopics\WebApplication1\WebApplication1\bin\Debug\n
 D:\Work\ITI\Intake 45\AdvancedTopics\WebApplication1\WebApplication1\bin\Debug\net8.0\Serilog.Sinks.File.dll
 D:\Work\ITI\Intake 45\AdvancedTopics\WebApplication1\WebApplication1\bin\Debug\net8.0\Serilog.Sinks.Seq.dll
 D:\Work\ITI\Intake 45\AdvancedTopics\WebApplication1\WebApplication1\bin\Debug\net8.0\Serilog.Enrichers.Environment.dll
+D:\Work\ITI\Intake 45\AdvancedTopics\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Work\ITI\Intake 45\AdvancedTopics\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+D:\Work\ITI\Intake 45\AdvancedTopics\WebApplication1\WebApplication1\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
+D:\Work\ITI\Intake 45\AdvancedTopics\WebApplication1\WebApplication1\bin\Debug\net8.0\StackExchange.Redis.dll
